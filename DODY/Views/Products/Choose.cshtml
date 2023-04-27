@@ -1,0 +1,145 @@
+﻿@model DODY.Models.Product
+@*This Page is used to open the product that client Choose in new page when click on image in HomePage*@
+@{
+    ViewBag.Title = "Choose";
+    //Layout = "~/Views/Shared/_LayoutCreateOrder.cshtml";
+
+}
+
+<h2>Choose</h2>
+<link href="~/Content/Style.css" rel="stylesheet" /> @*Buy Now Style*@
+<div class="container">
+    <hr />
+    <dl class="dl-horizontal">
+        <div style="padding-left:20px;">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Color)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Color)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Size)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Size)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Brand)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Brand)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Pro_For)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Pro_For)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UnitPrice)
+            </dd>
+        </div>
+ 
+        <div style=" padding-left:290px">
+            @* if img tag show Error => No Problem It's Ok *@
+            <img src="@Url.Content(Model.Image)" width="300" height="350" class="imageHover" />
+        </div>
+        <div>
+            @* if img tag show Error => No Problem It's Ok *@
+            <img src="@Url.Content(Model.Image)" width="60" height="75" class="imageOne" />
+            <img src="@Url.Content(Model.Image)" width="60" height="75" class="imageTwo" />
+            <img src="@Url.Content(Model.Image)" width="60" height="75" class="imageThree" />
+        </div>
+        <div style=" padding-left:290px">
+            @* if img tag show Error => No Problem It's Ok *@
+            <img src="@Url.Content(Model.Image)" width="300" height="350" class="imageLarger" />
+        </div>
+      
+    </dl>
+
+
+</div>
+<div class="list-orders">
+    Hello from list orders
+  
+        <hr />
+        <dl class="dl-vertical">
+            @*<div style="padding-left:20px;">
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Color)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Size)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Brand)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Pro_For)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UnitPrice)
+                </dd>
+            </div>*@
+           
+        </dl>
+ </div>
+    <div class="Add_to_list">
+
+        <p> @Html.ActionLink("Add to Cart", "Add_to_cart", new { id = Model.Pno }, new { @class = "Add_To_Cart" })</p>
+        <p> @Html.ActionLink("Add To List", "Add_to_list", new { id = Model.Pno }, new { @class = "Add_To_List" })</p>
+        <p> @Html.ActionLink("Add To List", "Add_to_list", new { id = Model.Pno }, new { @class = "btn btn-new1" })</p>
+
+    </div>
+
+    <p>
+
+        @Html.ActionLink("Buy Now", "Login", "Clients", new { id = Model.Pno }, new { @class = "btn_Buy_now" })
+       
+
+    </p>
+    <hr />
+    <br />
+
+
+@*Cid = 1,2,3,4,6,8,9,12*@

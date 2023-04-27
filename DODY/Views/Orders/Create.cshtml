@@ -1,0 +1,129 @@
+﻿@model DODY.Models.Order
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm("Create","Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4 style="color:limegreen"> Create Order</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.Ono, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Ono, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Ono, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                List<SelectListItem> lst = new List<SelectListItem>();
+
+                lst.Add(new SelectListItem { Text = "M", Value = "M" });
+                lst.Add(new SelectListItem { Text = "L", Value = "L" });
+                lst.Add(new SelectListItem { Text = "XL", Value = "XL" });
+                lst.Add(new SelectListItem { Text = "XXL", Value = "XXL" });
+
+            }
+            @Html.DropDownListFor(Model => Model.Size, lst, "       Select size      ", new { @Class = "form-control" });
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Color, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.ConfEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ConfEmail, new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.ConfEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Total, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OrderTime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*<input type="datetime" name="datetime" value="@DateTime.Now" />*@
+            @Html.TextBoxFor(model => model.OrderTime, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.OrderTime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Pno, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Pno, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Pno, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cid, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*<input type="number" name="Cid" value="@Session["Client_id"]" />*@
+            @Html.TextBoxFor(model => model.Cid, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Cid, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.Sid, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Sid, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Sid, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.Mid, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Mid, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Mid, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    <div class="form-group" style="padding-left:15px;">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" style="background-color:dodgerblue ;color:white;" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

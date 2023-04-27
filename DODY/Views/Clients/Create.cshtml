@@ -1,0 +1,132 @@
+﻿@model DODY.Models.Client
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4 style="color:limegreen"> Create Client</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fname, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Fname,  new { @class = "form-control" } )
+            @Html.ValidationMessageFor(model => model.Fname, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Lname, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Lname, new { @class = "form-control" } )
+            @Html.ValidationMessageFor(model => model.Lname, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control"  })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Address, new { @class = "form-control"  })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control"  })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.ConfEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.ConfEmail, new { @class = "form-control" } )
+            @Html.ValidationMessageFor(model => model.ConfEmail, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.PasswordFor(model => model.Password,  new { @class = "form-control" } )
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.ConfPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.PasswordFor(model => model.ConfPassword, new { @class = "form-control" } )
+            @Html.ValidationMessageFor(model => model.ConfPassword, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                List<SelectListItem> lst = new List<SelectListItem>();
+
+                lst.Add(new SelectListItem { Text = "Egypt", Value = "Egypt" });
+                lst.Add(new SelectListItem { Text = "Italy", Value = "Italy" });
+                lst.Add(new SelectListItem { Text = "France", Value = "France" });
+                lst.Add(new SelectListItem { Text = "Libnan", Value = "Libnan" });
+                lst.Add(new SelectListItem { Text = "AlSaodia", Value = "Alsaodia" });
+                lst.Add(new SelectListItem { Text = "AlKiwait", Value = "AlkIwait" });
+                lst.Add(new SelectListItem { Text = "AlErak", Value = "AlErak" });
+                lst.Add(new SelectListItem { Text = "Souria", Value = "Souria" });
+
+            }
+            @Html.DropDownListFor(Model => Model.Country, lst, "       Select Country      ", new { @Class = "form-control" });
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Birth_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Birth_Date, new { @class = "form-control"  })
+            @Html.ValidationMessageFor(model => model.Birth_Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.Sid, "Sid", htmlAttributes: new { @class = "control-label col-md-2" } )
+        <div lass="col-md-10">
+            @Html.DropDownList("Sid", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Sid, "", new { @class = "text-dancger" })
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-success"  @*style="background-color:dodgerblue ;color:white;"*@ />
+        </div>
+    </div>
+</div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

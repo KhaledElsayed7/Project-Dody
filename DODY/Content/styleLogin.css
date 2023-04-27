@@ -1,0 +1,67 @@
+﻿body {
+    margin:0;
+    padding:0;
+
+}
+section{
+    width:100vw;
+    height:100vh;
+    background-image:url('Stock/Stock-3.jpg');
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.sec2 {
+    position: absolute;
+    background-image: url('Stock/Stock-2.jpg');
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+sec2.container{
+    width:45vw;
+    height:66vh;
+}
+/*.sec .social{
+    padding-left:6.5vw;
+    padding-top:6vh;
+
+}*/
+/*.sec {
+    width:3.5vw;
+    height:7vh;
+    padding-left:0vw;
+}*/
+.content h2{
+    font-family:'Segoe UI',Tahoma,Verdana, Geneva, sans-serif,;
+    padding-left:7vw;
+}
+.content input[type=text]{
+    height:30px;
+    border:0;
+    margin-top:2.5vh;
+    margin-left:4vw;
+    border-radius:20px;
+}
+.content .input[type=Submit]{
+    color:white;
+    margin-left:4vw;
+    margin-top:2vh;
+    padding-bottom:10px;
+    padding-top:10px;
+    padding-right:15px;
+    padding-left:15px;
+    border:1px solid;
+    border-radius:20px;
+    background-color:black;
+}
+.content .input[placeholder]{
+    font-family:'Trebuchet MS', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-left:1vw;
+    font-size:13px;
+}

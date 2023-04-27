@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mydbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Cid" />
+    </Key>
+    <Property Name="Cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birth_Date" Type="DateTime" Precision="0" />
+    <Property Name="Sid" Type="Int32" />
+    <Property Name="Pno" Type="Int32" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__Client__Pno__70FDBF69" FromRole="Client" ToRole="Product" />
+    <NavigationProperty Name="Seller" Relationship="Self.FK__Client__Sid__078C1F06" FromRole="Client" ToRole="Seller" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__Cid__505BE5AD" FromRole="Client" ToRole="Order" />
+    <NavigationProperty Name="Products" Relationship="Self.Client_Product" FromRole="Client" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Deliverier">
+    <Key>
+      <PropertyRef Name="Did" />
+    </Key>
+    <Property Name="Did" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birth_Date" Type="DateTime" Precision="0" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Ono" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__Deliverier__Ono__30E33A54" FromRole="Deliverier" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="Mid" />
+    </Key>
+    <Property Name="Mid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Sellers" Relationship="Self.FK__Seller__Mid__0880433F" FromRole="Manager" ToRole="Seller" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Ono" />
+    </Key>
+    <Property Name="Ono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Size" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderTime" Type="DateTime" Precision="3" />
+    <Property Name="Total" Type="Double" />
+    <Property Name="Pno" Type="Int32" Nullable="false" />
+    <Property Name="Cid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="Self.FK__Order__Cid__505BE5AD" FromRole="Order" ToRole="Client" />
+    <NavigationProperty Name="Deliveriers" Relationship="Self.FK__Deliverier__Ono__30E33A54" FromRole="Order" ToRole="Deliverier" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__Order__Pno__2E06CDA9" FromRole="Order" ToRole="Product" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK__Sale__Ono__2FEF161B" FromRole="Order" ToRole="Sale" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Pno" />
+    </Key>
+    <Property Name="Pno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Size" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Pro_For" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="280" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UnitPrice" Type="Double" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Brand" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Clients" Relationship="Self.FK__Client__Pno__70FDBF69" FromRole="Product" ToRole="Client" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__Pno__2E06CDA9" FromRole="Product" ToRole="Order" />
+    <NavigationProperty Name="Clients1" Relationship="Self.Client_Product" FromRole="Product" ToRole="Client" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="Sno" />
+    </Key>
+    <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Order_Count" Type="Int32" />
+    <Property Name="Sold" Type="Int32" />
+    <Property Name="Canceled" Type="Int32" />
+    <Property Name="Year" Type="DateTime" Precision="0" />
+    <Property Name="Total" Type="Double" />
+    <Property Name="Ono" Type="Int32" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__Sale__Ono__2FEF161B" FromRole="Sale" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Seller">
+    <Key>
+      <PropertyRef Name="Sid" />
+    </Key>
+    <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birth_Date" Type="DateTime" Precision="0" />
+    <Property Name="Mid" Type="Int32" />
+    <NavigationProperty Name="Clients" Relationship="Self.FK__Client__Sid__078C1F06" FromRole="Seller" ToRole="Client" />
+    <NavigationProperty Name="Manager" Relationship="Self.FK__Seller__Mid__0880433F" FromRole="Seller" ToRole="Manager" />
+  </EntityType>
+  <Association Name="FK__Client__Pno__70FDBF69">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Pno" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Pno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Client__Sid__078C1F06">
+    <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
+    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seller">
+        <PropertyRef Name="Sid" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__Cid__505BE5AD">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Cid" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Cid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Deliverier__Ono__30E33A54">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="Deliverier" Type="Self.Deliverier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Ono" />
+      </Principal>
+      <Dependent Role="Deliverier">
+        <PropertyRef Name="Ono" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Seller__Mid__0880433F">
+    <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+    <End Role="Seller" Type="Self.Seller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manager">
+        <PropertyRef Name="Mid" />
+      </Principal>
+      <Dependent Role="Seller">
+        <PropertyRef Name="Mid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__Pno__2E06CDA9">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Pno" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Pno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sale__Ono__2FEF161B">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Ono" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="Ono" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Client_Product">
+    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="mydbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Deliveriers" EntityType="Self.Deliverier" />
+    <EntitySet Name="Managers" EntityType="Self.Manager" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Sales" EntityType="Self.Sale" />
+    <EntitySet Name="Sellers" EntityType="Self.Seller" />
+    <AssociationSet Name="FK__Client__Pno__70FDBF69" Association="Self.FK__Client__Pno__70FDBF69">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Client__Sid__078C1F06" Association="Self.FK__Client__Sid__078C1F06">
+      <End Role="Seller" EntitySet="Sellers" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__Cid__505BE5AD" Association="Self.FK__Order__Cid__505BE5AD">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Deliverier__Ono__30E33A54" Association="Self.FK__Deliverier__Ono__30E33A54">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Deliverier" EntitySet="Deliveriers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Seller__Mid__0880433F" Association="Self.FK__Seller__Mid__0880433F">
+      <End Role="Manager" EntitySet="Managers" />
+      <End Role="Seller" EntitySet="Sellers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__Pno__2E06CDA9" Association="Self.FK__Order__Pno__2E06CDA9">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sale__Ono__2FEF161B" Association="Self.FK__Sale__Ono__2FEF161B">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="Client_Product" Association="Self.Client_Product">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

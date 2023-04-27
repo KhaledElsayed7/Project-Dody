@@ -1,0 +1,64 @@
+﻿
+@model DODY.Models.Product
+
+@*This Page is used to open the product that client Choose in new page when click on image in HomePage*@
+@{
+    ViewBag.Title = "Add_to_cart";
+
+}
+
+<h4 style="color:limegreen; font-style:italic">Add to List</h4>
+<link href="~/Content/Style.css" rel="stylesheet" /> @*Buy Now Style*@
+<div class="container">
+    <hr />
+    <dl class="dl-horizontal">
+
+        <div style="padding-left:20px;">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Color)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Color)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Size)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Size)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Pro_For)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Pro_For)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.UnitPrice)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UnitPrice)
+                </dd>
+        </div>
+                <div style=" padding-left:290px">
+                    @* if img tag show Error => No Problem It's Ok *@
+                    <img src="@Url.Content(Model.Image)" width="310" height="350" />
+                </div>
+   </dl>
+                <p> @Html.ActionLink("Add to Cart", "Add_to_cart", new { id = Model.Pno }, new { @class = "Add_To_Cart" })</p>
+</div>
+

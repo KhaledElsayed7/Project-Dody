@@ -1,0 +1,98 @@
+﻿@model IEnumerable<DODY.Models.Product>
+
+
+<div id="Back to Start" class="navbar navbar-collapse " style="background-color:aliceblue; width:1580px; margin-left:0px; margin-right:0px;">
+    <ul class="nav navbar-nav">
+
+        <li style="padding-left:210px">@Html.ActionLink("MEN", "Men", "Products") </li>
+        <li style="padding-left:210px">@Html.ActionLink("WOMEN", "Women", "Products") </li>
+        <li style="padding-left:210px">@Html.ActionLink("KIDS&BABY", "Kids_Baby", "Products") </li>
+        <li style="padding-left:210px">@Html.ActionLink("LUGGAGE", "Luggage", "Products") </li>
+        <li style="padding-left:210px">@Html.ActionLink("SPORTS", "Sports", "Products") </li>
+    </ul>
+</div>
+
+<div>
+    <div class="two" style="
+        background-color:white;
+        margin-top: -20px;
+        margin-left: 2px;
+        margin-right: 2px;
+        padding-left: 5px;
+        padding-right: 5px;
+        border-right: 2px solid salmon;
+        min-width: 250px;
+        max-width: 200px;
+        min-height: 600px;
+        max-height: 1280px;
+
+        display: inline-block
+    ">
+        <div>
+            <h4 style="font-size: 17px; text-decoration:underline; padding-left:15px; font-style: italic; font-weight: 100; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Departments :</h4>
+            <ul style="list-style:square inside; padding-left:15px; padding-top:15px; color:black ; font-size:16px; font-style:normal; font-weight:100; font-family:'Franklin Gothic Medium', 'Arial Narrow' , Arial, sans-serif ">
+
+                <li>@Html.ActionLink("Men", "Men", "Products") </li>
+                <li>@Html.ActionLink("Women", "Women", "Products") </li>
+                <li>@Html.ActionLink("Kids", "Kids", "Products") </li>
+                <li>@Html.ActionLink("Baby", "Baby", "Products") </li>
+                <li>@Html.ActionLink("Luggage", "Luggage", "Products") </li>
+                <li>@Html.ActionLink("Sport", "Sports", "Products") </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="three" style="background-color:white; margin-left:270px; margin-right:0px; position:static; margin-top:-604px; border:2px solid red; width:112%; display:inline-block ; ">
+        <div class="row" style="background-color:white; ">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 col-md-3">
+                    <div class="thumbnail" style=" max-width:200px; min-height:360px; max-height:350px; margin:2px 1px 3px 1px; float:left;">
+                        <a href="Choose/@item.Pno"  target="_blank">
+                            <img src="@Url.Content(item.Image)" height="242" width="200">  @*height="242"  width="200"*@
+                        </a>
+                        <div class="caption">
+                            <h4 style="text-align:center"> @item.Brand </h4>
+
+                            <p>&nbsp;<span style="float:left; padding-top:7px; padding-left:15px ">@item.Name&nbsp;&nbsp;&nbsp;<span style="font-size:17px; font-weight:600"><span style="font-size:15px;">EGP</span> @item.UnitPrice</span></span>  </p>
+                            @*<p style="padding-left:50px;padding-top:10px;">@Html.ActionLink("Details", "Details", new { id = item.Pno }, new { @class = "btn btn-default" }) </p>*@
+                           
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+    <div style="margin-left: 270px; margin-top: 70px; opacity: 1; background-color: lavender;border:10px solid lavender; border-radius:6px; padding-top: 7px; min-width: 1390px; min-height: 35px; ">
+        <a href="#Back to Start" style="color: darkcyan; text-decoration:none; font-size:16px; font-weight:500; text-align:center; padding-top:4px; padding-left:550px ">
+            @*Do not remove the link tag*@
+            Back to start
+        </a>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

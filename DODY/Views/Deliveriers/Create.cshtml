@@ -1,0 +1,91 @@
+﻿@model DODY.Models.Deliverier
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm("Create", "Deliveriers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4 style="color:limegreen;">Create Deliverier</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                List<SelectListItem> lst = new List<SelectListItem>();
+
+                lst.Add(new SelectListItem { Text = "Egypt", Value = "Egypt" });
+                lst.Add(new SelectListItem { Text = "Italy", Value = "Italy" });
+                lst.Add(new SelectListItem { Text = "France", Value = "France" });
+                lst.Add(new SelectListItem { Text = "Libnan", Value = "Libnan" });
+                lst.Add(new SelectListItem { Text = "AlSaodia", Value = "Alsaodia" });
+                lst.Add(new SelectListItem { Text = "AlKiwait", Value = "AlkIwait" });
+                lst.Add(new SelectListItem { Text = "AlErak", Value = "AlErak" });
+                lst.Add(new SelectListItem { Text = "Souria", Value = "Souria" });
+
+            }
+            @Html.DropDownListFor(Model => Model.Country, lst, "   Egypt   ", new { @Class = "form-control" });
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Birth_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Birth_Date, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Birth_Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Image, "Did", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" id="imgFile" name="imgFile" class="form-control" style="background-color:palegreen" />
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" style="padding-left:15px;">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" style="background-color:dodgerblue ;color:white;" />
+        </div>
+    </div>
+
+    <div style="padding-left:15px; font-family:'Times New Roman', Times, serif">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mydbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Cid" />
+    </Key>
+    <Property Name="Cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birth_Date" Type="DateTime" Precision="0" />
+    <Property Name="Sid" Type="Int32" />
+    <NavigationProperty Name="Seller" Relationship="Self.FK__Client__Sid__078C1F06" FromRole="Client" ToRole="Seller" />
+    <Property Name="Pno" Type="Int32" />
+    <NavigationProperty Name="Orders" Relationship="mydbModel.FK__Order__Cid__05F8DC4F" FromRole="Client" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="mydbModel.FK__Client__Pno__70FDBF69" FromRole="Client" ToRole="Product" />
+    <NavigationProperty Name="Products" Relationship="mydbModel.Client_Product" FromRole="Client" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="Mid" />
+    </Key>
+    <Property Name="Mid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Sellers" Relationship="Self.FK__Seller__Mid__0880433F" FromRole="Manager" ToRole="Seller" />
+    <NavigationProperty Name="Orders" Relationship="mydbModel.FK__Order__Mid__08D548FA" FromRole="Manager" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Seller">
+    <Key>
+      <PropertyRef Name="Sid" />
+    </Key>
+    <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birth_Date" Type="DateTime" Precision="0" />
+    <Property Name="Mid" Type="Int32" />
+    <NavigationProperty Name="Clients" Relationship="Self.FK__Client__Sid__078C1F06" FromRole="Seller" ToRole="Client" />
+    <NavigationProperty Name="Manager" Relationship="Self.FK__Seller__Mid__0880433F" FromRole="Seller" ToRole="Manager" />
+    <NavigationProperty Name="Orders" Relationship="mydbModel.FK__Order__Sid__06ED0088" FromRole="Seller" ToRole="Order" />
+  </EntityType>
+  <Association Name="FK__Client__Sid__078C1F06">
+    <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
+    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seller">
+        <PropertyRef Name="Sid" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Seller__Mid__0880433F">
+    <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+    <End Role="Seller" Type="Self.Seller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manager">
+        <PropertyRef Name="Mid" />
+      </Principal>
+      <Dependent Role="Seller">
+        <PropertyRef Name="Mid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mydbEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Managers" EntityType="Self.Manager" />
+    <EntitySet Name="Sellers" EntityType="Self.Seller" />
+    <AssociationSet Name="FK__Client__Sid__078C1F06" Association="Self.FK__Client__Sid__078C1F06">
+      <End Role="Seller" EntitySet="Sellers" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Seller__Mid__0880433F" Association="Self.FK__Seller__Mid__0880433F">
+      <End Role="Manager" EntitySet="Managers" />
+      <End Role="Seller" EntitySet="Sellers" />
+    </AssociationSet>
+    <EntitySet Name="Deliveriers" EntityType="mydbModel.Deliverier" />
+    <EntitySet Name="Sales" EntityType="mydbModel.Sale" />
+    <EntitySet Name="Orders" EntityType="mydbModel.Order" />
+    <AssociationSet Name="FK__Order__Cid__05F8DC4F" Association="mydbModel.FK__Order__Cid__05F8DC4F">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Deliverier__Ono__0ABD916C" Association="mydbModel.FK__Deliverier__Ono__0ABD916C">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Deliverier" EntitySet="Deliveriers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__Mid__08D548FA" Association="mydbModel.FK__Order__Mid__08D548FA">
+      <End Role="Manager" EntitySet="Managers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__Sid__06ED0088" Association="mydbModel.FK__Order__Sid__06ED0088">
+      <End Role="Seller" EntitySet="Sellers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sale__Ono__09C96D33" Association="mydbModel.FK__Sale__Ono__09C96D33">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <EntitySet Name="Products" EntityType="mydbModel.Product" />
+    <AssociationSet Name="FK__Client__Pno__70FDBF69" Association="mydbModel.FK__Client__Pno__70FDBF69">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__Pno__07E124C1" Association="mydbModel.FK__Order__Pno__07E124C1">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="Client_Product" Association="mydbModel.Client_Product">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Deliverier">
+    <Key>
+      <PropertyRef Name="Did" />
+    </Key>
+    <Property Name="Did" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birth_Date" Type="DateTime" Precision="0" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Ono" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="mydbModel.FK__Deliverier__Ono__0ABD916C" FromRole="Deliverier" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="Sno" />
+    </Key>
+    <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Order_Count" Type="Int32" />
+    <Property Name="Sold" Type="Int32" />
+    <Property Name="Canceled" Type="Int32" />
+    <Property Name="Year" Type="DateTime" Precision="0" />
+    <Property Name="Total" Type="Double" />
+    <Property Name="Ono" Type="Int32" />
+    <NavigationProperty Name="Order" Relationship="mydbModel.FK__Sale__Ono__09C96D33" FromRole="Sale" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Ono" />
+    </Key>
+    <Property Name="Ono" Type="Int32" Nullable="false" />
+    <Property Name="Size" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrderTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Total" Type="Double" Nullable="false" />
+    <Property Name="Pno" Type="Int32" Nullable="false" />
+    <Property Name="Cid" Type="Int32" />
+    <Property Name="Sid" Type="Int32" />
+    <Property Name="Mid" Type="Int32" />
+    <NavigationProperty Name="Client" Relationship="mydbModel.FK__Order__Cid__05F8DC4F" FromRole="Order" ToRole="Client" />
+    <NavigationProperty Name="Deliveriers" Relationship="mydbModel.FK__Deliverier__Ono__0ABD916C" FromRole="Order" ToRole="Deliverier" />
+    <NavigationProperty Name="Manager" Relationship="mydbModel.FK__Order__Mid__08D548FA" FromRole="Order" ToRole="Manager" />
+    <NavigationProperty Name="Seller" Relationship="mydbModel.FK__Order__Sid__06ED0088" FromRole="Order" ToRole="Seller" />
+    <NavigationProperty Name="Sales" Relationship="mydbModel.FK__Sale__Ono__09C96D33" FromRole="Order" ToRole="Sale" />
+    <NavigationProperty Name="Product" Relationship="mydbModel.FK__Order__Pno__07E124C1" FromRole="Order" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK__Order__Cid__05F8DC4F">
+    <End Type="mydbModel.Client" Role="Client" Multiplicity="0..1" />
+    <End Type="mydbModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Cid" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Cid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Deliverier__Ono__0ABD916C">
+    <End Type="mydbModel.Order" Role="Order" Multiplicity="1" />
+    <End Type="mydbModel.Deliverier" Role="Deliverier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Ono" />
+      </Principal>
+      <Dependent Role="Deliverier">
+        <PropertyRef Name="Ono" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__Mid__08D548FA">
+    <End Type="mydbModel.Manager" Role="Manager" Multiplicity="0..1" />
+    <End Type="mydbModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manager">
+        <PropertyRef Name="Mid" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Mid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__Sid__06ED0088">
+    <End Type="mydbModel.Seller" Role="Seller" Multiplicity="0..1" />
+    <End Type="mydbModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seller">
+        <PropertyRef Name="Sid" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sale__Ono__09C96D33">
+    <End Type="mydbModel.Order" Role="Order" Multiplicity="0..1" />
+    <End Type="mydbModel.Sale" Role="Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Ono" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="Ono" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Pno" />
+    </Key>
+    <Property Name="Pno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Size" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Pro_For" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="280" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UnitPrice" Type="Double" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Brand" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Clients" Relationship="mydbModel.FK__Client__Pno__70FDBF69" FromRole="Product" ToRole="Client" />
+    <NavigationProperty Name="Orders" Relationship="mydbModel.FK__Order__Pno__07E124C1" FromRole="Product" ToRole="Order" />
+    <NavigationProperty Name="Clients1" Relationship="mydbModel.Client_Product" FromRole="Product" ToRole="Client" />
+  </EntityType>
+  <Association Name="FK__Client__Pno__70FDBF69">
+    <End Type="mydbModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="mydbModel.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Pno" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Pno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__Pno__07E124C1">
+    <End Type="mydbModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="mydbModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Pno" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Pno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Client_Product">
+    <End Type="mydbModel.Client" Role="Client" Multiplicity="*" />
+    <End Type="mydbModel.Product" Role="Product" Multiplicity="*" />
+  </Association>
+</Schema>

@@ -1,0 +1,98 @@
+﻿@model IEnumerable<DODY.Models.Product>
+
+<div id="Back to Start" class="navbar navbar-collapse " style="background-color:aliceblue; width:1568px; margin-left:0px; margin-right:0px;">
+    <ul class="nav navbar-nav">
+
+        <li style="padding-left:250px">@Html.ActionLink("M E N", "Men", "Products") </li>
+        <li style="padding-left:250px">@Html.ActionLink("W O M E N", "Women", "Products") </li>
+        <li style="padding-left:250px">@Html.ActionLink("B A B Y", "Baby", "Products") </li>
+        <li style="padding-left:250px">@Html.ActionLink("T E E N S", "Teens", "Products") </li>
+    </ul>
+</div>
+
+<div>
+
+    <div class="two" style="
+        background-color:white;
+        margin-top: -20px;
+        margin-left: 2px;
+        margin-right: 2px;
+        padding-left: 5px;
+        padding-right: 5px;
+        border: 2px solid salmon;
+        min-width: 250px;
+        max-width: 200px;
+        min-height: 600px;
+        max-height: 1280px;
+        display: inline-block
+    ">
+        <div>
+            <h4 style="font-size: 17px; text-decoration:underline; padding-left:15px; font-style: italic; font-weight: 100; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Product For :</h4>
+            <ul style="list-style:square inside; padding-left:15px; padding-top:15px; color:black ; font-size:16px; font-style:normal; font-weight:100; font-family:'Franklin Gothic Medium', 'Arial Narrow' , Arial, sans-serif ">
+
+                <li>@Html.ActionLink("Men", "Men", "Products") </li>
+                <li>@Html.ActionLink("Women", "Women", "Products") </li>
+                <li>@Html.ActionLink("Baby", "Baby", "Products") </li>
+                <li>@Html.ActionLink("Teens", "Teens", "Products") </li>
+
+
+
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="three" style="background-color:white; margin-left:270px; margin-right:0px; position:static; margin-top:-604px; border:2px solid red; width:112%; display:inline-block ; ">
+        <div class="row" style="background-color:white; ">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-md-3 col-lg-3">
+                    <div class="thumbnail" style=" max-width:200px; min-height:360px; max-height:350px; margin:2px 1px 3px 1px; float:left;">
+                        <a href="Buy" target="_blank">
+                            <img src="@Url.Content(item.Image)" height="242" width="200">  @*height="242"  width="200"*@
+                        </a>
+                        <div class="caption">
+                            <h3>    </h3>
+                            @*<p>@item.Name</p>*@
+
+                            <p>&nbsp;<span style="float:left; padding-top:7px; padding-left:15px ">@item.Name&nbsp;&nbsp;&nbsp;<span style="font-size:17px; font-weight:600"><span style="font-size:15px;">EGP</span> @item.UnitPrice</span></span>  </p>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <button style="margin-left: 800px; margin-top: 30px; opacity: 0.4; background-color: indigo; border: 1px solid indigo; outline-color: limegreen; min-width: 114px; min-height: 35px; ">
+        <a href="#Back to Start" style="color:limegreen; text-decoration:none; font-size:16px; font-weight:500 ">
+            @*Do not remove the link tag*@
+            Back to Start
+        </a>
+    </button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Kids_Baby";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style=" width:100%; margin-left:250px; ">
+    <h4 style="color:limegreen ;font-style:italic; font-weight:100; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ">Kids&Baby</h4>
+
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-md-3 col-lg-3">
+                <div class="thumbnail" style=" max-width:200px; min-height:360px; max-height:350px; margin:2px 1px 3px 1px; float:left;">
+                    <a href="Choose/@item.Pno" target="_blank">
+                        <img src="@Url.Content(item.Image)" height="242" width="200">  @*height="242"  width="200"*@
+                    </a>
+                    <div class="caption">
+                        <h4 style="text-align:center"> @item.Brand </h4>
+                        @*<p>@item.Name</p>*@
+
+                        <p>&nbsp;<span style="float:left; padding-top:7px; padding-left:15px ">@item.Name&nbsp;&nbsp;&nbsp;<span style="font-size:17px; font-weight:600"><span style="font-size:15px;">EGP</span> @item.UnitPrice</span></span>  </p>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

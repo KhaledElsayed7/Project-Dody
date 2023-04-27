@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mydbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Cid" />
+    </Key>
+    <Property Name="Cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Lname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="int" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sid" Type="int" />
+  </EntityType>
+  <EntityType Name="Client_Product">
+    <Key>
+      <PropertyRef Name="SalesNo" />
+    </Key>
+    <Property Name="SalesNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cid" Type="int" Nullable="false" />
+    <Property Name="Pno" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="Mid" />
+    </Key>
+    <Property Name="Mid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Lname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="int" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="Sid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Pno" />
+    </Key>
+    <Property Name="Pno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Color" Type="nvarchar" MaxLength="50" />
+    <Property Name="Size" Type="nvarchar" MaxLength="20" />
+    <Property Name="Tybe" Type="nvarchar" MaxLength="30" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Is_Sold" Type="int" />
+    <Property Name="UnitPrice" Type="float" />
+    <Property Name="Image" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Seller">
+    <Key>
+      <PropertyRef Name="Sid" />
+    </Key>
+    <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Lname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="int" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Client__Sid__47DBAE45">
+    <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
+    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seller">
+        <PropertyRef Name="Sid" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Client_Prod__Cid__7D0E9093">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Client_Product" Type="Self.Client_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Cid" />
+      </Principal>
+      <Dependent Role="Client_Product">
+        <PropertyRef Name="Cid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Client_Prod__Pno__7E02B4CC">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Client_Product" Type="Self.Client_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Pno" />
+      </Principal>
+      <Dependent Role="Client_Product">
+        <PropertyRef Name="Pno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Manager__Sid__36B12243">
+    <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
+    <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seller">
+        <PropertyRef Name="Sid" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="Sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mydbModelStoreContainer">
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Client_Product" EntityType="Self.Client_Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Seller" EntityType="Self.Seller" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Client__Sid__47DBAE45" Association="Self.FK__Client__Sid__47DBAE45">
+      <End Role="Seller" EntitySet="Seller" />
+      <End Role="Client" EntitySet="Client" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Client_Prod__Cid__7D0E9093" Association="Self.FK__Client_Prod__Cid__7D0E9093">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Client_Product" EntitySet="Client_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Client_Prod__Pno__7E02B4CC" Association="Self.FK__Client_Prod__Pno__7E02B4CC">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Client_Product" EntitySet="Client_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Manager__Sid__36B12243" Association="Self.FK__Manager__Sid__36B12243">
+      <End Role="Seller" EntitySet="Seller" />
+      <End Role="Manager" EntitySet="Manager" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
